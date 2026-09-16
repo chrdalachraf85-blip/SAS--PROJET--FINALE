@@ -1,9 +1,13 @@
-import {apprenants} from "./data.js"
+import {apprenants,nom} from "./data.js"
+
+
 function normaliserNom(nom){
-    nom 
+    nom = nom.toLowerCase();
+    return nom
 
 }
 function ajouterApprenant(id,nom,ville,) {
+    nom = normaliserNom(nom)
     apprenants.push({
     id,
     nom,
@@ -12,6 +16,7 @@ function ajouterApprenant(id,nom,ville,) {
     })
     return apprenants
 }
-ajouterApprenant(1,"achraf","nador")
+console.log(normaliserNom(nom))
+ajouterApprenant(1,nom,"nador")
 
 console.log(apprenants)
