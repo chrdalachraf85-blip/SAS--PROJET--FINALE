@@ -1,4 +1,4 @@
-export { apprenants, nom };
+export { apprenants, nom ,id ,  ville };
 import  promptSync from "prompt-sync";
 const apprenants = [
 {
@@ -17,4 +17,6 @@ totalExercices: 20, challengeTermine: false }
 const prompt = promptSync();
 
 let nom = prompt("Enter your name: ");
+let id = prompt("Enter your id: ");
+let ville = prompt("Enter your ville: ");
 
