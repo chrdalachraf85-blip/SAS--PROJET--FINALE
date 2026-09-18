@@ -185,18 +185,13 @@ function afficherTableauDeBord(){
             solide++
         }
     }
-    console.log(`Total apprenants : ${length}`)
-    console.log(`Progression moyenne : ${averageprogression}%`)
-    console.log(`Solide : ${solide}`)
-    console.log(`En progression : ${enprogression}`)
-    console.log(`À renforcer : ${renforcer}`)
-
+    
     let tier = trierParProgression()
     for(let object of tier){
-    let progress = calculerProgression(object.id)
-    let challengemissing = []
-    let joursmissing = []
-    for(let jour = 1; jour <= 7; jour++){
+        let progress = calculerProgression(object.id)
+        let challengemissing = []
+        let joursmissing = []
+        for(let jour = 1; jour <= 7; jour++){
         let exixte = object.resultats.find(function(day){
             return day.jour === jour
         })
@@ -213,8 +208,13 @@ function afficherTableauDeBord(){
    
     
     
-    console.log(`Jours sans résultat : ${joursmissing}`)
     console.log(`${object.nom} : ${progress.progression}%`)
+    console.log(`Total apprenants : ${length}`)
+    console.log(`Progression moyenne : ${averageprogression}%`)
+    console.log(`Solide : ${solide}`)
+    console.log(`En progression : ${enprogression}`)
+    console.log(`À renforcer : ${renforcer}`)
+    console.log(`Jours sans résultat : ${joursmissing}`)
     console.log(`Challenges non terminés : ${challengemissing}`)
     }
 

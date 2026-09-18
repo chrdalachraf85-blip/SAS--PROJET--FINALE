@@ -31,7 +31,14 @@ do{
             
             let apprenant = prompt("Quel apprenant recherchez-vous :")
             apprenant = Number(apprenant)
-            console.dir(rechercherApprenant(apprenant) , {depth: null})
+            let result = rechercherApprenant(apprenant)   
+            if(result === undefined){
+                console.log("Apprenant introuvable")
+            }  else{
+                console.dir(result, {depth: null})
+
+            }
+            
 
         break;
         case "5":
@@ -73,7 +80,7 @@ do{
             console.dir(rechercherApprenant(recherche), {depth: null})  
         break;
         case "7":
-            let niveau = prompt("Choisissez un niveau (Solide / En progression / À renforcer) : ")
+            let niveau = prompt("Choisissez un niveau (Solide / En progression / A renforcer) : ")
             niveau = normaliserNom(niveau)
             console.dir(filtrerParNiveau(niveau), {depth: null})
         break;
