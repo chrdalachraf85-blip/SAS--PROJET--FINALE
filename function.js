@@ -1,10 +1,20 @@
-import {apprenants, nom ,id , ville} from "./data.js"
-
+import {apprenants} from "./data.js"
+export {afficherTableauDeBord,trierParNom,trierParProgression,filtrerParNiveau,calculerProgression,ajouterResultat,rechercherApprenant,ajouterApprenant,validerResultat,normaliserNom}
 
 function normaliserNom(nom){
     nom = nom.toLowerCase();
     nom = nom.trim()
-    return nom
+    nom = nom.split(" ")
+    let nomdiff = [];
+    for(let letter of nom){
+        if(letter === ""){
+            continue;
+        }
+        letter = letter[0].toUpperCase() + letter.slice(1)
+        nomdiff.push(letter)
+    }
+    return nom = nomdiff.join(" ")
+    
 
 
 }
@@ -15,7 +25,7 @@ function validerResultat(jour, exercicesTermines, totalExercices, challengeTermi
     }else{
         return undefined
     }
-    if(exercicesTermines <= totalExercices && exercicesTermines >= 0){
+    if(exercicesTermines <= totalExercices && exercicesTermines >= 0 && totalExercices >= 0){
         data.exercicesTermines=  exercicesTermines
         data.totalExercices=  totalExercices
 
@@ -86,7 +96,13 @@ function rechercherApprenant(recherche){
 
     return undefined
 }
-function calculerProgression(apprenant){
+function calculerProgression(id){
+    let apprenant = apprenants.find(function(objet ){
+        return objet.id ===id ;
+    })
+    if(apprenant === undefined){
+        return undefined
+    }
     let returning = {}
     let result  = 0;
     let exercicetotal  = 0;
@@ -133,17 +149,17 @@ function filtrerParNiveau(niveau){
     let array =[]
     
     for(let objet of apprenants){
-        let progress =calculerProgression(objet)
+        let progress =calculerProgression(objet.id)
         if(niveau === progress.niveau){
             array.push(objet)
         }
     }
     return array
 }
-function trierParProgression(apprenants){
+function trierParProgression(){
     apprenants.sort(function(a, b) {
-    let progressA = calculerProgression(a)
-    let progressB = calculerProgression(b)
+    let progressA = calculerProgression(a.id)
+    let progressB = calculerProgression(b.id)
     return progressB.progression - progressA.progression
 })
 return apprenants
@@ -155,7 +171,7 @@ function afficherTableauDeBord(){
     let enprogression = 0
     let renforcer = 0
     for(let object of apprenants){
-        let progress =  calculerProgression(object)
+        let progress =  calculerProgression(object.id)
         if(length > 0){
             averageprogression += progress.progression / length
 
@@ -175,9 +191,9 @@ function afficherTableauDeBord(){
     console.log(`En progression : ${enprogression}`)
     console.log(`À renforcer : ${renforcer}`)
 
-    let tier = trierParProgression(apprenants)
+    let tier = trierParProgression()
     for(let object of tier){
-    let progress = calculerProgression(object)
+    let progress = calculerProgression(object.id)
     let challengemissing = []
     let joursmissing = []
     for(let jour = 1; jour <= 7; jour++){
@@ -204,10 +220,16 @@ function afficherTableauDeBord(){
 
 }
 
+function trierParNom(){
+
+    apprenants.sort(function(a, b){
+        return a.nom.localeCompare(b.nom)
+    })
+
+    return apprenants
+}
 
 
-
-afficherTableauDeBord()
 
 
 

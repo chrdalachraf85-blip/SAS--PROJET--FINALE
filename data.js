@@ -1,5 +1,6 @@
 
 import  promptSync from "prompt-sync";
+export {apprenants}
 const apprenants = [
 {
 id: 1,
