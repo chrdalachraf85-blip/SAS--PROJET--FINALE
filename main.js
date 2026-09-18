@@ -13,7 +13,7 @@ do{
             afficherTableauDeBord()
             break;
         case "2" :
-           console.log(apprenants)
+           console.dir(apprenants, {depth : null})
         break;
         case "3":
             let id = prompt("Identifiant  : ")
@@ -31,7 +31,7 @@ do{
             
             let apprenant = prompt("Quel apprenant recherchez-vous :")
             apprenant = Number(apprenant)
-            console.log(rechercherApprenant(apprenant))
+            console.dir(rechercherApprenant(apprenant) , {depth: null})
 
         break;
         case "5":
@@ -39,14 +39,26 @@ do{
             idd = Number(idd)
             let jour = prompt("Jour : ")
             jour = Number(jour)
+
+            if(jour < 1 || jour > 7){
+                console.log("Le jour doit être entre 1 et 7")
+                break
+            }
             let exercicesTermines = prompt("Exercices terminés : ")
             exercicesTermines = Number(exercicesTermines)
             let totalExercices = prompt("Total exercices : ")
             totalExercices = Number(totalExercices)
             let challengeTermine = prompt("Challenge terminé (oui/non): ")
-            challengeTermine = challengeTermine === "oui"
+            if(challengeTermine === "oui"){
+                challengeTermine = true
+            }else if(challengeTermine === "non"){
+                challengeTermine = false
+            }else{
+                console.log("Veuillez entrer oui ou non")
+                break;
+            }
             let addresultant = ajouterResultat(idd, jour, exercicesTermines, totalExercices, challengeTermine)
-                    if(addresultant === undefined){
+            if(addresultant === undefined){
             console.log("Apprenant introuvable ou résultat invalide")
             }else{
             console.log("Résultat ajouté/modifié avec succès")
@@ -58,17 +70,18 @@ do{
                 recherche = Number(recherche)
             }
 
-            console.log(rechercherApprenant(recherche))  
+            console.dir(rechercherApprenant(recherche), {depth: null})  
         break;
         case "7":
             let niveau = prompt("Choisissez un niveau (Solide / En progression / À renforcer) : ")
-            console.log(filtrerParNiveau(niveau))
+            niveau = normaliserNom(niveau)
+            console.dir(filtrerParNiveau(niveau), {depth: null})
         break;
         case "8":
-            console.log(trierParProgression())
+            console.dir(trierParProgression(), {depth: null})
         break;
         case "9":
-            console.log(trierParNom())
+            console.dir(trierParNom(), {depth: null})
         break;
         case "0":
                 console.log("Fermeture du programme.")
