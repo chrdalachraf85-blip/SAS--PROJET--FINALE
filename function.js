@@ -6,12 +6,12 @@ function normaliserNom(nom){
     nom = nom.trim()
     nom = nom.split(" ")
     let nomdiff = [];
-    for(let letter of nom){
-        if(letter === ""){
+    for(let word of nom){
+        if(word === ""){
             continue;
         }
-        letter = letter[0].toUpperCase() + letter.slice(1)
-        nomdiff.push(letter)
+        word = word[0].toUpperCase() + word.slice(1)
+        nomdiff.push(word)
     }
     return nom = nomdiff.join(" ")
     
@@ -25,7 +25,7 @@ function validerResultat(jour, exercicesTermines, totalExercices, challengeTermi
     }else{
         return undefined
     }
-    if(exercicesTermines <= totalExercices && exercicesTermines >= 0 && totalExercices >= 0){
+    if(exercicesTermines <= totalExercices && exercicesTermines >= 0 ){
         data.exercicesTermines=  exercicesTermines
         data.totalExercices=  totalExercices
 
@@ -35,15 +35,11 @@ function validerResultat(jour, exercicesTermines, totalExercices, challengeTermi
     if(typeof challengeTermine === "boolean"){
         data.challengeTermine= challengeTermine
 
-
     }else {
         return undefined
     }
     
-   
         return data
-    
-
 }
 function ajouterApprenant(id,nom,ville,) {
     nom = normaliserNom(nom)
@@ -98,7 +94,7 @@ function rechercherApprenant(recherche){
 }
 function calculerProgression(id){
     let apprenant = apprenants.find(function(objet ){
-        return objet.id ===id ;
+        return objet.id === id ;
     })
     if(apprenant === undefined){
         return undefined
@@ -133,7 +129,7 @@ function calculerProgression(id){
     }else if(progress >= 50){
         level = "En progression"
     }else{
-        level = "À renforcer"
+        level = "A renforcer"
     }
     returning.exercicesTermines = result;
     returning.totalExercices = exercicetotal;
@@ -177,7 +173,7 @@ function afficherTableauDeBord(){
 
         }
 
-        if(progress.niveau === "À renforcer"){
+        if(progress.niveau === "A renforcer"){
             renforcer++
         }else if(progress.niveau === "En progression"){
             enprogression++
@@ -192,7 +188,7 @@ function afficherTableauDeBord(){
     console.log(`Progression moyenne : ${averageprogression}%`)
     console.log(`Solide : ${solide}`)
     console.log(`En progression : ${enprogression}`)
-    console.log(`À renforcer : ${renforcer}`)
+    console.log(`A renforcer : ${renforcer}`)
     console.log("")
     console.log("--- PROGRESSION DES APPRENANTS ---")
     
