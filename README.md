@@ -78,10 +78,6 @@ Le tableau de bord affiche le nombre total d'apprenants, la progression moyenne 
 
 La moyenne du groupe est calculée à partir des progressions individuelles des apprenants.
 
-## Lancement
-```bash
-node main.js
-```
 
 ## Scénarios de test
 1. Ajouter un apprenant valide et vérifier qu'il peut être retrouvé.
@@ -94,5 +90,4 @@ node main.js
 ## Technologies utilisées
 - JavaScript
 - Node.js
-- ES Modules
 - prompt-sync
