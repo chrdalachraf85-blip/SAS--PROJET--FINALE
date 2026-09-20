@@ -3,10 +3,10 @@ import {apprenants} from "./data.js"
 const prompt = promptSync();
 import {afficherTableauDeBord,trierParNom,trierParProgression,filtrerParNiveau,calculerProgression,ajouterResultat,rechercherApprenant,ajouterApprenant,validerResultat,normaliserNom} from "./function.js";
 
-console.log("====SAS PROGRESS CONSOLE====")
-console.log("1. Afficher le tableau de bord \n2. Afficher la liste des apprenants \n3. Ajouter un apprenant \n4. Consulter un apprenant par identifiant \n5. Ajouter ou modifier le résultat dune journée \n6. Rechercher un apprenant par nom \n7. Filtrer les apprenants par niveau \n8. Trier les apprenants par progression décroissante \n9. Trier les apprenants par ordre alphabétique \n0. Quitter")
 let choice; 
 do{
+    console.log("====SAS PROGRESS CONSOLE====")
+    console.log("1. Afficher le tableau de bord \n2. Afficher la liste des apprenants \n3. Ajouter un apprenant \n4. Consulter un apprenant par identifiant \n5. Ajouter ou modifier le résultat dune journée \n6. Rechercher un apprenant par nom \n7. Filtrer les apprenants par niveau \n8. Trier les apprenants par progression décroissante \n9. Trier les apprenants par ordre alphabétique \n0. Quitter")
     choice  = prompt("Votre choix :");
     switch(choice){
         case "1":
@@ -22,7 +22,7 @@ do{
             let ville = prompt("Ville :")
             let add =ajouterApprenant(id,nom,ville)
             if(add === undefined){
-                console.log("Identifiant déjà existant :")
+                console.log("Identifiant déjà existant!")
             }else {
                 console.log("Apprenant ajouté")
             }

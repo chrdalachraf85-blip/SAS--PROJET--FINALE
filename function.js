@@ -125,7 +125,7 @@ function calculerProgression(id){
     }
     let progress = 0;
     if(exercicetotal > 0){
-        progress = result / exercicetotal * 100
+        progress = Math.round(result / exercicetotal * 100)
     }
     let level = "";
     if(progress >= 80){
@@ -150,7 +150,7 @@ function filtrerParNiveau(niveau){
     
     for(let objet of apprenants){
         let progress =calculerProgression(objet.id)
-        if(niveau === progress.niveau){
+        if(niveau.toLowerCase() === progress.niveau.toLowerCase()){
             array.push(objet)
         }
     }
@@ -185,6 +185,16 @@ function afficherTableauDeBord(){
             solide++
         }
     }
+    console.log("========== TABLEAU DE BORD ==========")
+    console.log("")
+    console.log("--- STATISTIQUES DU GROUPE ---")
+    console.log(`Total apprenants : ${length}`)
+    console.log(`Progression moyenne : ${averageprogression}%`)
+    console.log(`Solide : ${solide}`)
+    console.log(`En progression : ${enprogression}`)
+    console.log(`À renforcer : ${renforcer}`)
+    console.log("")
+    console.log("--- PROGRESSION DES APPRENANTS ---")
     
     let tier = trierParProgression()
     for(let object of tier){
@@ -207,15 +217,14 @@ function afficherTableauDeBord(){
     
    
     
-    
-    console.log(`${object.nom} : ${progress.progression}%`)
-    console.log(`Total apprenants : ${length}`)
-    console.log(`Progression moyenne : ${averageprogression}%`)
-    console.log(`Solide : ${solide}`)
-    console.log(`En progression : ${enprogression}`)
-    console.log(`À renforcer : ${renforcer}`)
+
+
+    console.log("")
+    console.log(`${object.nom}`)
+    console.log(`Progression : ${progress.progression}%`)
     console.log(`Jours sans résultat : ${joursmissing}`)
-    console.log(`Challenges non terminés : ${challengemissing}`)
+    console.log(`Challenges non terminés (jours) : ${challengemissing}`)
+    console.log("-------------------------------------")
     }
 
 }
