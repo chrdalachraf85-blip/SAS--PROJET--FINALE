@@ -1,11 +1,14 @@
 # SAS Progress Console
 
-## Présentation
-**SAS Progress Console** est une application JavaScript exécutée dans la console avec Node.js. Elle permet de gérer des apprenants fictifs et leurs résultats journaliers, calculer leur progression et afficher un tableau de bord pédagogique.
+## Overview
 
-## Structure du projet
+**SAS Progress Console** is a JavaScript application that runs in the console using Node.js. It allows you to manage fictional learners and their daily results, calculate their progress, and display an educational dashboard.
+
+## Project Structure
+
 ```text
 SAS-PROJET-FINALE/
+
 ├── README.md
 ├── data.js
 ├── function.js
@@ -15,12 +18,13 @@ SAS-PROJET-FINALE/
 └── .gitignore
 ```
 
-- `data.js` : données des apprenants.
-- `function.js` : fonctions principales de l'application.
-- `main.js` : menu principal et interaction avec l'utilisateur.
-- `package.json` : configuration du projet.
+* `data.js`: learner data.
+* `function.js`: main application functions.
+* `main.js`: main menu and user interaction.
+* `package.json`: project configuration.
 
-## Structure des données
+## Data Structure
+
 ```js
 {
   id: 1,
@@ -37,57 +41,76 @@ SAS-PROJET-FINALE/
 }
 ```
 
-Un résultat contient le numéro du jour (1 à 7), le nombre d'exercices terminés, le nombre total d'exercices proposés et un booléen indiquant si le challenge est terminé.
+A result contains the day number (1 to 7), the number of completed exercises, the total number of proposed exercises, and a boolean indicating whether the challenge was completed.
 
-## Fonctionnalités
-- Afficher le tableau de bord
-- Afficher la liste des apprenants
-- Ajouter un apprenant sans accepter deux fois le même identifiant
-- Consulter un apprenant par identifiant
-- Ajouter ou modifier le résultat d'une journée
-- Rechercher un apprenant par ID ou par nom
-- Filtrer les apprenants par niveau
-- Trier les apprenants par progression décroissante
-- Trier les apprenants par ordre alphabétique
+## Features
 
-## Calcul de la progression
+* Display the dashboard
+* Display the list of learners
+* Add a learner without allowing duplicate IDs
+* View a learner by ID
+* Add or modify a daily result
+* Search for a learner by ID or name
+* Filter learners by level
+* Sort learners by descending progress
+* Sort learners alphabetically
+
+## Progress Calculation
+
 ```text
-Progression = (total des exercices terminés / total des exercices proposés) × 100
+Progress = (total completed exercises / total proposed exercises) × 100
 ```
 
-Si le total proposé est égal à `0`, la progression reste à `0` afin d'éviter une division par zéro.
+If the total number of proposed exercises is `0`, the progress remains at `0` to avoid division by zero.
 
-| Progression | Niveau |
-|---|---|
-| 80 % ou plus | Solide |
-| 50 % à moins de 80 % | En progression |
-| Moins de 50 % | À renforcer |
+| Progress             | Level             |
+| -------------------- | ----------------- |
+| 80% or more          | Solid             |
+| 50% to less than 80% | In Progress       |
+| Less than 50%        | Needs Improvement |
 
-Le programme calcule aussi le nombre de challenges terminés et le nombre de journées renseignées.
+The program also calculates the number of completed challenges and the number of reported days.
 
-## Données absentes
-Une journée absente du tableau `resultats` est une **journée non renseignée**. Une journée présente avec `challengeTermine: false` correspond à un **challenge non terminé**. Ces deux situations sont distinguées dans le tableau de bord.
+## Missing Data
 
-## Validation des données
-Le programme vérifie que le jour est compris entre 1 et 7, que les nombres d'exercices sont valides, que les exercices terminés ne dépassent pas le total proposé et que `challengeTermine` est un booléen. Il empêche également l'ajout de deux apprenants avec le même identifiant.
+A day that is missing from the `resultats` array is considered a **day with no data**.
 
-Lorsqu'un résultat existe déjà pour une journée, il est remplacé au lieu d'être dupliqué.
+A day that exists with `challengeTermine: false` corresponds to an **incomplete challenge**.
 
-## Tableau de bord
-Le tableau de bord affiche le nombre total d'apprenants, la progression moyenne du groupe, le nombre de profils **Solide**, **En progression** et **À renforcer**, la progression des apprenants, les journées sans résultat et les challenges non terminés.
+These two situations are distinguished in the dashboard.
 
-La moyenne du groupe est calculée à partir des progressions individuelles des apprenants.
+## Data Validation
 
+The program checks that the day is between 1 and 7, that the exercise numbers are valid, that completed exercises do not exceed the total number of proposed exercises, and that `challengeTermine` is a boolean.
 
-## Scénarios de test
-1. Ajouter un apprenant valide et vérifier qu'il peut être retrouvé.
-2. Essayer un identifiant déjà utilisé et vérifier que l'ajout est refusé.
-3. Ajouter puis modifier le résultat d'une même journée et vérifier qu'il est remplacé.
-4. Tester un jour hors de 1 à 7 ou trop d'exercices terminés et vérifier que le résultat est refusé.
-5. Rechercher un apprenant par identifiant ou par tout ou partie de son nom.
-6. Vérifier le calcul de la progression, des challenges terminés et des journées renseignées.
+It also prevents adding two learners with the same ID.
 
-## Technologies utilisées
-- JavaScript
-- Node.js
-- prompt-sync
+When a result already exists for a specific day, it is replaced instead of being duplicated.
+
+## Dashboard
+
+The dashboard displays:
+
+* The total number of learners
+* The group's average progress
+* The number of **Solid**, **In Progress**, and **Needs Improvement** profiles
+* Learner progress
+* Days with no results
+* Incomplete challenges
+
+The group average is calculated based on the individual progress of each learner.
+
+## Test Scenarios
+
+1. Add a valid learner and verify that they can be found.
+2. Try to use an ID that is already in use and verify that the addition is rejected.
+3. Add and then modify the result for the same day and verify that it is replaced.
+4. Test a day outside the range of 1 to 7 or too many completed exercises and verify that the result is rejected.
+5. Search for a learner by ID or by all or part of their name.
+6. Verify the calculation of progress, completed challenges, and reported days.
+
+## Technologies Used
+
+* JavaScript
+* Node.js
+* prompt-sync
